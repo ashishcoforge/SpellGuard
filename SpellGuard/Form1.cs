@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
 
 namespace SpellGuard
 {
@@ -19,97 +18,6 @@ namespace SpellGuard
             InitializeComponent();
             button2.Hide();
             errors = new List<SpellError>();
-        }
-
-        public List<SpellError> CheckSpell(string folderPath)
-        {
-            List<SpellError> result = new List<SpellError>();
-
-            // Check if the folder exists
-            if (!Directory.Exists(folderPath))
-            {
-                throw new Exception("Folder not found!");
-            }
-
-            // Get all .doc and .docx files in the folder
-            var allFiles = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
-                                     .Where(s => s.EndsWith(".docx") || s.EndsWith(".doc"))
-                                     .ToArray();
-            progressBar1.Maximum = allFiles.Length;
-
-            var count = 0;
-
-            if (allFiles.Length == 0)
-            {
-                throw new Exception("No Word documents found in the folder.");
-            }
-
-            // Initialize Word application
-            Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
-            try
-            {
-                foreach (string filePath in allFiles)
-                {
-                    count += 1;
-                    // Open the Word document
-                    Document doc = wordApp.Documents.Open(filePath);
-                    try
-                    {
-                        foreach (Microsoft.Office.Interop.Word.Range wordRange in doc.Words)
-                        {
-                            if (wordRange.SpellingErrors.Count != 0)
-                            {
-                                var pageNumber = wordRange.get_Information(WdInformation.wdActiveEndPageNumber);
-                                var lineNumber = wordRange.get_Information(WdInformation.wdFirstCharacterLineNumber);
-                                var position = wordRange.Words.First.Start;
-
-                                // Get spelling suggestions
-                                List<string> suggestions = new List<string>();
-                                foreach (Microsoft.Office.Interop.Word.SpellingSuggestion suggestion in wordRange.GetSpellingSuggestions())
-                                {
-                                    suggestions.Add(suggestion.Name);
-                                }
-
-                                // Create SpellError object
-                                SpellError spellError = new SpellError()
-                                {
-                                    WordFileName = Path.GetFileName(filePath),
-                                    WrongSpell = wordRange.Text,
-                                    LineNumber = (int)lineNumber,
-                                    PageNumber = (int)pageNumber,
-                                    Position = position,
-                                    SuggestedWords = String.Join(", ", suggestions)
-                                };
-                                result.Add(spellError);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error checking file {Path.GetFileName(filePath)}: {ex.Message}");
-                    }
-                    finally
-                    {
-                        // Close the document
-                        progressBar1.Value += 1;
-                        doc.Close(SaveChanges: false);
-                    }
-                }
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                return result;
-            }
-            finally
-            {
-                // Quit the Word application
-                wordApp.Quit();
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -130,7 +38,7 @@ namespace SpellGuard
 
                     try
                     {
-                        errors = CheckSpell(selectedPath.Replace("\\", "\\\\"));
+                        errors = CheckSpell(selectedPath);
                         MessageBox.Show("Spell Check Completed");
                         DisplayErrors(errors);
                     }
@@ -148,7 +56,122 @@ namespace SpellGuard
             }
         }
 
-        public byte[] ExportExcel(List<SpellError> errors)
+        private List<SpellError> CheckSpell(string folderPath)
+        {
+            List<SpellError> result = new List<SpellError>();
+
+            if (!Directory.Exists(folderPath))
+            {
+                throw new Exception("Folder not found!");
+            }
+
+            var allFiles = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
+                                    .Where(s => s.EndsWith(".docx") || s.EndsWith(".doc"))
+                                    .ToArray();
+            progressBar1.Maximum = allFiles.Length;
+
+            if (allFiles.Length == 0)
+            {
+                throw new Exception("No Word documents found in the folder.");
+            }
+
+            var wordApp = new Microsoft.Office.Interop.Word.Application();
+            try
+            {
+                foreach (string filePath in allFiles)
+                {
+                    ProcessFile(filePath, wordApp, result);
+                    progressBar1.Value += 1;
+                }
+            }
+            finally
+            {
+                wordApp.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
+            }
+
+            return result;
+        }
+
+        private void ProcessFile(string filePath, Microsoft.Office.Interop.Word.Application wordApp, List<SpellError> result)
+        {
+            Document doc = null;
+            try
+            {
+                doc = wordApp.Documents.Open(filePath);
+                foreach (Microsoft.Office.Interop.Word.Range wordRange in doc.Words)
+                {
+                    if (wordRange.SpellingErrors.Count != 0)
+                    {
+                        var spellError = CreateSpellError(filePath, wordRange);
+                        result.Add(spellError);
+                    }
+                }
+            }
+            catch (System.Runtime.InteropServices.COMException comEx)
+            {
+                Console.WriteLine($"COM Error checking file {Path.GetFileName(filePath)}: {comEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking file {Path.GetFileName(filePath)}: {ex.Message}");
+            }
+            finally
+            {
+                if (doc != null)
+                {
+                    doc.Close(SaveChanges: false);
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(doc);
+                }
+            }
+        }
+
+        private SpellError CreateSpellError(string filePath, Microsoft.Office.Interop.Word.Range wordRange)
+        {
+            var pageNumber = wordRange.get_Information(WdInformation.wdActiveEndPageNumber);
+            var lineNumber = wordRange.get_Information(WdInformation.wdFirstCharacterLineNumber);
+            var position = wordRange.Words.First.Start;
+
+            var suggestions = wordRange.GetSpellingSuggestions()
+                                       .Cast<SpellingSuggestion>()
+                                       .Select(s => s.Name)
+                                       .ToList();
+
+            return new SpellError
+            {
+                WordFileName = Path.GetFileName(filePath),
+                WrongSpell = wordRange.Text,
+                LineNumber = (int)lineNumber,
+                PageNumber = (int)pageNumber,
+                Position = position,
+                SuggestedWords = String.Join(", ", suggestions)
+            };
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var content = ExportExcel(errors);
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    Title = "Save Spell Errors"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllBytes(saveFileDialog.FileName, content);
+                    MessageBox.Show("File saved successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private byte[] ExportExcel(List<SpellError> errors)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -165,47 +188,15 @@ namespace SpellGuard
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var content = ExportExcel(errors);
-                SaveFileDialog saveFileDialog = new SaveFileDialog
-                {
-                    Filter = "Excel Files|*.xlsx",
-                    Title = "Save Spell Errors"
-                };
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    System.IO.File.WriteAllBytes(saveFileDialog.FileName, content);
-                    MessageBox.Show("File saved successfully.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-        }
-
         private void DisplayErrors(List<SpellError> errors)
         {
             dataGridViewErrors.DataSource = errors;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) { }
 
-        }
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e) { }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e) { }
     }
 }
