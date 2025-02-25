@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SpellGuard</RootNamespace>
+    <AssemblyName>SpellGuard</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=7.6.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.7.6.0\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=7.5.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.7.5.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=7.5.0.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.7.5.0\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.8.0.4\lib\net462\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpellError.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EpplusFormulaTableColumnAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EpplusIgnore.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EpplusNestedTableColumnAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EpplusTableAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EpplusTableColumnAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EpplusTableColumnAttributeBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Attributes.EPPlusTableColumnSortOrderAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.CalculationExtension.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Compatibility.CompatibilitySettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingAverageGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingBeginsWith.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingBetween.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingColorScaleGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingContainsBlanks.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingContainsErrors.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingContainsText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingDataBarGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingDuplicateValues.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingEndsWith.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingEqual.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingExpression.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingFiveIconSet.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingGreaterThan.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingGreaterThanOrEqual.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingLessThan.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingLessThanOrEqual.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingNotBetween.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingNotContainsBlanks.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingNotContainsErrors.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingNotContainsText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingNotEqual.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingRule.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingStdDevGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingThreeColorScale.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingTimePeriodGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingTopBottomGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingTwoColorScale.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingUniqueValues.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithFormula.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithFormula2.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithRank.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithReverse.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithShowValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithStdDev.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.Contracts.IExcelConditionalFormattingWithText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.ExcelConditionalFormattingAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.ExcelConditionalFormattingCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.ExcelConditionalFormattingColorScaleValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.ExcelConditionalFormattingIconDataBarValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.ExcelConditionalFormattingRule.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ConditionalFormatting.IRangeConditionalFormatting.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Configuration.ExcelPackageConfiguration.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Core.R1C1Translator.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Core.Worksheet.Fill.FillDateParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Core.Worksheet.Fill.FillListParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Core.Worksheet.Fill.FillNumberParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Core.Worksheet.Fill.FillParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidation.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationAny.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationCustom.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationDateTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationDecimal.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationInt.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationList.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Contracts.IExcelDataValidationWithOperator.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Events.OnFormulaChangedEventArgs.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidation.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDatavalidationAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationAny.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationCustom.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationDateTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationDecimal.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationInt.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationList.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelDataValidationType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.ExcelTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Exceptions.DataValidationFormulaTooLongException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Formulas.Contracts.IExcelDataValidationFormula.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Formulas.Contracts.IExcelDataValidationFormulaDateTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Formulas.Contracts.IExcelDataValidationFormulaDecimal.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Formulas.Contracts.IExcelDataValidationFormulaInt.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Formulas.Contracts.IExcelDataValidationFormulaList.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.Formulas.Contracts.IExcelDataValidationFormulaTime.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.DataValidation.IRangeDataValidation.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelBoxWhiskerChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelBoxWhiskerChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartEx.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExAxis.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExData.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExDataCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExDataLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExDataLabelCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExDataLabelItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExDataPoint.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExDataPointCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExLegend.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExNumericData.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExParetoLine.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExPlotarea.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExSerieBinning.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExSerieDataLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExStringData.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExTitle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExValueColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelChartExValueColors.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelFunnelChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelHistogramChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelHistogramChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelRegionMapChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelRegionMapChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelSunburstChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelTreemapChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelTreemapChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelWaterfallChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ChartEx.ExcelWaterfallChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelAreaChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelAreaChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelBarChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelBarChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelBubbleChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelBubbleChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelBubbleChartSeries.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartAxis.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartAxisStandard.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataLabelCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataLabelItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataLabelStandard.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataPoint.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataPointCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartDataTable.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartErrorBars.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartLegend.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartLegendEntry.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartMarker.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartNumericSource.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartPlotArea.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartSerieDataLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartSerieWithErrorBars.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartSerieWithHorizontalErrorBars.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartStandard.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartStandardSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartStyleItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartSurface.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartTitle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartTitleStandard.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartTrendline.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartTrendlineCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelChartTrendlineLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelDoughnutChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelDrawingTextSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelHistogramChartSeries.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelLayout.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelLineChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelLineChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelManualLayout.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelOfPieChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelPieChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelPieChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelRadarChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelRadarChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelScatterChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelScatterChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelStandardChartWithLines.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelStockChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelStockChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelSurfaceChart.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.ExcelSurfaceChartSerie.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartColorsManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleColorManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleEntry.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleFontReference.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleLibraryItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleMarkerLayout.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Chart.Style.ExcelChartStyleReference.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControl.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlButton.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlCheckBox.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlDialog.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlDropDown.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlEditBox.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlGroupBox.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlList.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlListBox.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlMargin.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlRadioButton.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlScrollBar.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlSpinButton.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlWithColorsAndLines.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Controls.ExcelControlWithText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelChartAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelConnectionShape.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelControlAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawing.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingBorder.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingConnectionPoint.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingCoordinate.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingFillBasic.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingLineEnd.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingPoint3D.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingsGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingSize.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelDrawingSphereCoordinate.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelGroupShape.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelImage.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelImageInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelPicture.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelPosition.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelShape.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelShapeBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelSlicerAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelTextBody.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelTextRun.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.ExcelView3D.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.GenericImageHandler.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Interfaces.IDrawingDataLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Interfaces.IDrawingSerieDataLabel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelPivotTableSlicer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelPivotTableSlicerCache.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelPivotTableSlicerCacheTabularData.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelPivotTableSlicerItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelPivotTableSlicerItemCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelSlicerCache.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelSlicerPivotTableCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelTableSlicer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.ExcelTableSlicerCache.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.Style.ExcelSlicerNamedStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Slicer.Style.ExcelSlicerStyleElement.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelColorTransformCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelColorTransformItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingColorManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingHslColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingPresetColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingRgbColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingRgbPercentageColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingSchemeColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingSystemColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.ExcelDrawingThemeColorManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Coloring.IColorTransformItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingBlurEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingColorChangeEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingColorReplaceEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingDuotoneEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingEffectBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingEffectStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingFillOverlayEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingGlowEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingInnerShadowEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingOuterShadowEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingPresetShadowEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingReflectionEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingShadowEffect.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Effect.ExcelDrawingShadowEffectBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingBlipEffects.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingBlipFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingBlipFillTile.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingFillBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingGradientFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingGradientFillColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingGradientFillColorList.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingGradientFillLinearSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingNoFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingPatternFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Fill.ExcelDrawingSolidFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Font.ExcelDrawingFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Font.ExcelDrawingFontBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.Font.ExcelDrawingFontSpecial.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawing3D.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawing3DBevel.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawing3DText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawingScene3D.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawingScene3DBackDrop.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawingScene3DCamera.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Style.ThreeD.ExcelDrawingScene3DLightRig.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelColorScheme.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelDrawingRectangle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelFontScheme.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelFormatScheme.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelTheme.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeEffectStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeEffectStyles.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeFillStyles.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeFontCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeLine.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeLineStyles.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Theme.ExcelThemeOverride.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingBaseCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingBorder.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingComment.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingControl.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingGradientFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingPicture.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingPictureCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingPictureFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlDrawingPosition.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.ExcelVmlMeasurementUnit.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Drawing.Vml.VmlGradiantColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelAddressBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelBackgroundImage.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelCellAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelCellBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelChartsheet.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelColumnCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelComment.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelCommentCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelEncryption.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelErrorValue+Values.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelErrorValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelFormulaAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelHeaderFooter.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelHeaderFooterText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelHyperLink.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelIgnoredError.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelIgnoredErrorCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelImageSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelInitializationError.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelNamedRange.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelNamedRangeCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelOutputTextFormat.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelOutputTextFormatFixedWidth.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelPackage.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelPackageSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelPrinterSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelProtectedRange.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelProtectedRangeCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelProtection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRange.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRangeBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRangeColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRangeRow.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRichDataErrorValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRow.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelRowsCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelSheetProtection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelStyles.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTableAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextFileFormat.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextFormat.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextFormatBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextFormatColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextFormatFixedWidth.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextFormatFixedWidthBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelTextSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorkbook.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorkbookView.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorksheet+MergeCellsCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorksheet.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorksheets.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorksheetView+ExcelWorksheetPanes.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorksheetView+ExcelWorksheetViewPaneSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWorksheetView.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExcelWriteProtection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.Accessibility.AccessibilitySettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.Accessibility.TableAccessibilitySettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.CssExclude.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.CssExcludeStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.CssExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.CssRangeExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.CssTableExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.ExcelHtmlOverrideExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.Exporters.ExcelHtmlExporterBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.HtmlExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.HtmlPictureSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.HtmlRangeExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.Interfaces.IExcelHtmlRangeExporter.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.Interfaces.IExcelHtmlTableExporter.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.PictureCssExclude.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.Settings.HtmlTableExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts.IBorder.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts.IBorderItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts.IFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts.IFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts.IStyleColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts.IStyleExport.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.ToCollection.Exceptions.EPPlusDataTypeConvertionException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.ToCollection.ToCollectionRow.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.ToDataTable.DataColumnMapping.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.ToDataTable.DataColumnMappingCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Export.ToDataTable.ToDataTableOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalCellCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalCellValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalDdeItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalDdeItemCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalDdeLink.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalDdeValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalDdeValueCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalDefinedName.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalLink.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalLinkAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalLinksCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalOleItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalOleItemsCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalOleLink.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalWorkbook.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalWorksheet.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.ExcelExternalWorksheetCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ExternalReferences.IExcelExternalNamedItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelAutoFilter.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelColorFilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelCustomFilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelDynamicFilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelFilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelFilterColumnCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelFilterCustomItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelFilterDateGroupItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelFilterItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelFilterValueItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelIconFilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelTop10FilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelValueFilterCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Filter.ExcelValueFilterColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FontSize.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.ArrayBehaviourConfig.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.BuiltInFunctions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.DoubleEnumerableParseOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Engineering.ConvertFunction.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Engineering.Erf.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.ExcelFunction.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.ExcelFunctionParametersInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.IFvProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.ICouponProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.IPmtProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.IPriceProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.IYearFracProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.NperImpl.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.RateImpl.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Finance.Implementations.XirrImpl.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.FunctionArgument.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.FunctionNameProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.FunctionRepository.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.FunctionsModule.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.HiddenValuesHandlingFunction.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.IFunctionModule.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.IFunctionNameProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Metadata.FunctionMetadataAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Excel.Functions.Text.Text.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelAddressCache.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelCalculationOption.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelUtilities.ExcelAddressInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelUtilities.ExcelAddressUtil.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelUtilities.LookupValueMatcher.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelUtilities.RangeAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelUtilities.ValueMatcher.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ExcelUtilities.WildCardValueMatcher.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Exceptions.CircularReferenceException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Exceptions.ExcelErrorCodes.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Exceptions.ExcelErrorValueException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Exceptions.InvalidFormulaException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Exceptions.UnrecognizedTokenException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaCellInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaExpressions.AddressCompileResult.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaExpressions.CompileResult.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaExpressions.CompileResultBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaExpressions.DynamicArrayCompileResult.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaExpressions.FunctionCompilers.FunctionCompiler.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaParser.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.FormulaParserManager.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.IAddressInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ICellInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.IFormulaCellInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.INameInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.INameValueProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.IRangeInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.FormulaAddressBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.FormulaCellAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.FormulaRangeAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.FormulaTableAddress.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.ILexer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.ISourceCodeTokenizer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.SourceCodeTokenizer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.LexicalAnalysis.Token.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Logging.IFormulaParserLogger.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Logging.LoggerFactory.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.NameValueProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ParsingConfiguration.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.ParsingContext.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.CellInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.EpplusExcelExternalRangeInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.ExternalCellInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.InMemoryRange.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.NameInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.NameInfoWithValue.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.RangeDefinition.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Ranges.RangeInfo.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.FormulaParsing.Utilities.Require.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.JsonExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.JsonRangeExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.JsonTableExportSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LicenseException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LoadFunctions.IExcelNumberFormatProvider.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LoadFunctions.LoadFunctionFunctionParamsBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LoadFunctions.Params.LoadFromCollectionParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LoadFunctions.Params.LoadFromDataTableParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LoadFunctions.Params.LoadFromDictionariesParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.LoadFunctions.Params.LoadFromTextParams.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.NumberFormatToTextArgs.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.OfficeProperties.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.BadCrcException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.BadPasswordException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.BadReadException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.BadStateException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.CloseDelegate.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.OpenDelegate.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.SetCompressionCallback.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.SfxGenerationException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.WriteDelegate.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zip.ZipException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.Adler.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.DeflateStream.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.GZipStream.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.ParallelDeflateOutputStream.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.ZlibCodec.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.ZlibConstants.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.ZlibException.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.Ionic.Zlib.ZlibStream.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.ZipPackagePartBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.ZipPackageRelationship.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Packaging.ZipPackageRelationshipCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.RangeExtensions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.RangeLeftToRightSortLayer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.RangeLeftToRightSortLayerBuilder.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.RangeSortLayer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.RangeSortLayerBuilder.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.RangeSortOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.SortCondition.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.SortConditionCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.SortLayerBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.SortOptionsBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.SortState.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.TableSortLayer.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.TableSortLayerBuilder.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sorting.TableSortOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sparkline.ExcelSparkline.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sparkline.ExcelSparklineCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sparkline.ExcelSparklineColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sparkline.ExcelSparklineGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Sparkline.ExcelSparklineGroupCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Border.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.DxfStyleBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfAlignment.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfBorderBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfBorderItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfFontBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfGradientFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfGradientFillColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfGradientFillColorCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfNumberFormat.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfProtection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfSlicerStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfStyleBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfStyleConditionalFormatting.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfStyleFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfStyleLimitedFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Dxf.ExcelDxfTableStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelBandedTableStyleElement.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelBorderItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelGradientFill.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelNumberFormat.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelParagraph.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelParagraphCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelRichText.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelRichTextCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelRichTextColor.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelSlicerTableStyleElement.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelTableStyleElement.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.ExcelTextFont.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.StyleBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Table.ExcelPivotTableNamedStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Table.ExcelTableAndPivotTableNamedStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Table.ExcelTableNamedStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Table.ExcelTableNamedStyleAsType.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.Table.ExcelTableNamedStyleBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelBorderItemXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelBorderXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelColorXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelFillXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelFontXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelGradientFillXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelNamedStyleXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelNumberFormatXml.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.ExcelXfs.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Style.XmlAccess.StyleXmlHelper.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.ExcelTable.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.ExcelTableCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.ExcelTableColumn.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.ExcelTableColumnCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.ExcelTableDxfBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.Calculation.PivotDataFieldItemSelection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotArea.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaAutoSort.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaDataFieldReference.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaReference.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaReferenceBase.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaReferenceCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaReferenceItems.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotAreaStyleConditions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotCacheDefinition.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTable.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableAreaConditionalFormatting.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableAreaConditionalFormattingCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableAreaStyle.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableAreaStyleCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableCacheField.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableCalculatedData.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableConditionalFormatting.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableConditionalFormattingCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableDataField.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableDataFieldCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableDataFieldShowDataAs.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableField.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableFieldCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableFieldDateGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableFieldGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableFieldItem.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableFieldItemsCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableFieldNumericGroup.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTablePageFieldSettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.ExcelPivotTableRowColumnFieldCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.Filter.ExcelPivotTableFieldFilterCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.Filter.ExcelPivotTableFilter.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.Filter.ExcelPivotTableFilterBaseCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.Filter.ExcelPivotTableFilterCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.PivotItemReference.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Table.PivotTable.PivotNull.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedComment.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedCommentCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedCommentMention.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedCommentMentionCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedCommentPerson.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedCommentPersonCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelThreadedCommentThread.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ThreadedComments.ExcelWorksheetThreadedComments.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ToCollectionOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ToCollectionRangeOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.ToCollectionTableOptions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Utils.AddressUtility.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Utils.ArgumentExtensions.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Utils.MemorySettings.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Utils.Require.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Utils.SqRefUtility.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVBAModule.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaModuleAttribute.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaModuleAttributesCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaModuleCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaProject.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaProtection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaReference.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaReferenceCollection.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaReferenceControl.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaReferenceProject.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.VBA.ExcelVbaSignature.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.Vba.Signatures.ExcelSignatureVersion.datasource" />
+    <None Include="Properties\DataSources\OfficeOpenXml.XmlHelper.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Public\SpellCheck.jpg" />
+    <Content Include="Public\CoforgeLogo.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

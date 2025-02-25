@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}|SpellGuard\\SpellGuard.csproj|c:\\users\\pocuser\\source\\repos\\spellguard\\spellguard\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}|SpellGuard\\SpellGuard.csproj|solutionrelative:spellguard\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}|SpellGuard\\SpellGuard.csproj|C:\\Users\\pocuser\\source\\repos\\SpellGuard\\spellguard\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}|SpellGuard\\SpellGuard.csproj|solutionrelative:spellguard\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}|SpellGuard\\SpellGuard.csproj|C:\\Users\\pocuser\\source\\repos\\SpellGuard\\spellguard\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C92DA9C2-6BB7-49B0-9A7A-1851B1DE1276}|SpellGuard\\SpellGuard.csproj|solutionrelative:spellguard\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\SpellGuard\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "SpellGuard\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\SpellGuard\\Form1.Designer.cs",
+              "RelativeToolTip": "SpellGuard\\Form1.Designer.cs",
+              "ViewState": "AgIAAA8AAABwMzMzM1MwwAkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T17:43:16.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\SpellGuard\\Form1.cs",
+              "RelativeDocumentMoniker": "SpellGuard\\Form1.cs",
+              "ToolTip": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\SpellGuard\\Form1.cs",
+              "RelativeToolTip": "SpellGuard\\Form1.cs",
+              "ViewState": "AgIAAHIAAABAMzMzM7M7wIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T17:19:37.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\SpellGuard\\Form1.cs",
+              "RelativeDocumentMoniker": "SpellGuard\\Form1.cs",
+              "ToolTip": "C:\\Users\\pocuser\\source\\repos\\SpellGuard\\SpellGuard\\Form1.cs [Design]",
+              "RelativeToolTip": "SpellGuard\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T16:57:00.299Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
